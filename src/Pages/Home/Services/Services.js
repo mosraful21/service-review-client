@@ -8,7 +8,7 @@ const Services = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        fetch('services.json')
+        fetch('http://localhost:5000/services')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
@@ -27,7 +27,7 @@ const Services = () => {
                     ></ServiceCard>)
                 }
             </div>
-            <Link to='/allServices' className='flex justify-center mb-5'><button className="btn btn-wide">See All</button></Link>
+            <Link to='/allServices' className='flex justify-center mb-5'><button className="btn btn-wide bg-blue-700 text-xl">See All</button></Link>
         </div>
     );
 };

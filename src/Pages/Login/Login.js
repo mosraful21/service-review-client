@@ -1,8 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/images/login/login.png'
+import { AuthContext } from '../../context/AuthProvider';
+import swal from 'sweetalert';
 
 const Login = () => {
+    const { login, signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -10,6 +16,40 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+
+        login(email, password)
+            .then(() => {
+                form.reset();
+                navigate(from, { replace: true });
+                swal("Successfully login");
+            })
+            .catch(() => {
+                swal("Wrong Password!");
+            })
+    }
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(() => {
+                navigate('/courses');
+                navigate(from, { replace: true });
+                swal("Successfully login");
+            })
+            .catch((error) => {
+                swal("Wrong Password!");
+            })
+    }
+
+    const handleGitHubSignIn = () => {
+        signInWithGitHub()
+            .then(() => {
+                navigate('/courses');
+                navigate(from, { replace: true });
+                swal("Successfully login");
+            })
+            .catch((error) => {
+                swal("Wrong Password!");
+            })
     }
 
     return (
@@ -33,7 +73,7 @@ const Login = () => {
                             </label>
                             <input type="password" name='password' placeholder="password" className="input input-bordered" />
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                <Link className="label-text-alt link link-hover">Forgot password?</Link>
                             </label>
                         </div>
                         <div className="form-control mt-6">
@@ -41,6 +81,15 @@ const Login = () => {
                         </div>
                     </form>
                     <p className='text-center'> New account <Link className='text-orange-600 font-bold' to='/signup'>Sign Up</Link> </p>
+                    <br />
+                    <div className='flex justify-evenly mb-3'>
+                        <div>
+                            <button onClick={handleGoogleSignIn} className="btn btn-outline btn-success">Google</button>
+                        </div>
+                        <div>
+                            <button onClick={handleGitHubSignIn} className="btn btn-outline btn-success">GitHub</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

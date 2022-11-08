@@ -5,8 +5,8 @@ const Header = () => {
 
     const menuItem =
     <>
-        <li className='font-semibold'> <Link to='/'>Home</Link> </li>
-        <li className='font-semibold'> <Link to='/blog'>Blog</Link> </li>
+        <li className='font-semibold text-xl'> <Link to='/'>Home</Link> </li>
+        <li className='font-semibold text-xl'> <Link to='/blog'>Blog</Link> </li>
     </>
 
     return (
@@ -20,7 +20,7 @@ const Header = () => {
                         {menuItem}
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-xl">Service Review</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-2xl">Service Review</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
@@ -28,8 +28,7 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link  className='font-semibold' to='/login'>login</Link>
-                <Link  className='font-semibold mx-4' to='/signup'>Register</Link>
+                <Link  className='font-semibold text-xl' to='/login'>login</Link>
             </div>
         </div>
     );
