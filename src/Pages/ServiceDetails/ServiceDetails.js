@@ -1,8 +1,10 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 const ServiceDetails = () => {
     const { img, title, price, description } = useLoaderData();
+    const {user} = useContext(AuthContext);
 
     return (
         <div>
@@ -20,7 +22,17 @@ const ServiceDetails = () => {
             </div>
 
             {/* section-2: Review Section */}
-            
+            <form className='border-2 rounded-xl p-5 shadow-2xl mb-5'>
+                <h2 className='text-4xl text-center font-bold mb-4'> Review</h2>
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+                    <input type="text" placeholder="Your Name" defaultValue={user?.displayName} className="input input-bordered w-full" />
+                    <input type="email" placeholder="Your Email" defaultValue={user?.email} className="input input-bordered w-full" readOnly />
+                    <input type="text" placeholder="Address" className="input input-bordered w-full" />
+                    <input type="text" placeholder="Phone Number" className="input input-bordered w-full" />
+                </div>
+                <textarea className="textarea textarea-bordered my-4 w-full h-40" placeholder="Your review"></textarea>
+                <Link to='' className='flex justify-center mb-5'><button className="btn btn-wide bg-blue-600 text-xl">Submit</button></Link>
+            </form>
 
         </div>
     );

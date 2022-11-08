@@ -5,7 +5,7 @@ const AllServices = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('http://localhost:5000/allServices')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
@@ -16,7 +16,7 @@ const AllServices = () => {
                 <p className="text-2xl font-bold text-orange-600 border-2 rounded-xl mt-5">Services</p>
                 <h2 className="text-5xl font-semibold m-3">Our Service Area</h2>
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-5'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-5'>
                 {
                     services.map(service => <ServiceCard
                         key={service._id}

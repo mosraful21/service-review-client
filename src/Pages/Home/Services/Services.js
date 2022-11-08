@@ -27,7 +27,7 @@ const Services = () => {
                     ></ServiceCard>)
                 }
             </div>
-            <Link to='/allServices' className='flex justify-center mb-5'><button className="btn btn-wide bg-blue-700 text-xl">See All</button></Link>
+            <Link to='/allServices' className='flex justify-center mb-5'><button className="btn btn-wide bg-blue-600 text-xl">See All</button></Link>
         </div>
     );
 };
