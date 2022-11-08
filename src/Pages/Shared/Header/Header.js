@@ -28,8 +28,8 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link  className='font-semibold' to='/'>login</Link>
-                <Link  className='font-semibold mx-4' to='/'>Register</Link>
+                <Link  className='font-semibold' to='/login'>login</Link>
+                <Link  className='font-semibold mx-4' to='/signup'>Register</Link>
             </div>
         </div>
     );
