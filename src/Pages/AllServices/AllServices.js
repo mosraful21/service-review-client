@@ -1,10 +1,7 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import ServiceCard from './ServiceCard';
+import React, { useEffect, useState } from 'react';
+import ServiceCard from '../Home/Services/ServiceCard';
 
-const Services = () => {
+const AllServices = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
@@ -16,7 +13,7 @@ const Services = () => {
     return (
         <div>
             <div className='text-center mb-4'>
-                <p className="text-2xl font-bold text-orange-600">Services</p>
+                <p className="text-2xl font-bold text-orange-600 border-2 rounded-xl mt-5">Services</p>
                 <h2 className="text-5xl font-semibold m-3">Our Service Area</h2>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-5'>
@@ -27,9 +24,8 @@ const Services = () => {
                     ></ServiceCard>)
                 }
             </div>
-            <Link to='/allServices' className='flex justify-center mb-5'><button className="btn btn-wide">See All</button></Link>
         </div>
     );
 };
 
-export default Services;
+export default AllServices;
