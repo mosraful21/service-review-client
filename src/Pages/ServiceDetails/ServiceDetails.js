@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import swal from 'sweetalert';
 
 const ServiceDetails = () => {
     const { _id, img, title, price, description } = useLoaderData();
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const handleReview = (event) => {
         event.preventDefault();
@@ -25,6 +26,23 @@ const ServiceDetails = () => {
             phone,
             message
         }
+
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(review)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if(data.acknowledged){
+                    swal('Review placed successfully');
+                    form.reset();
+                }
+            })
+            .catch(error => console.log(error))
     }
 
     return (
@@ -52,7 +70,7 @@ const ServiceDetails = () => {
                     <input name='phone' type="text" placeholder="Phone Number" className="input input-bordered w-full" />
                 </div>
                 <textarea name='message' className="textarea textarea-bordered my-4 w-full h-40" placeholder="Your review"></textarea>
-                <Link to='/' className='flex justify-center mb-5'><button className="btn btn-wide bg-blue-600 text-xl">Submit</button></Link>
+                <button className="btn btn-wide bg-blue-600 text-xl">Submit</button>
             </form>
 
         </div>
