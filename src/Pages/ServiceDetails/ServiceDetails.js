@@ -10,7 +10,7 @@ const ServiceDetails = () => {
     const handleReview = (event) => {
         event.preventDefault();
         const form = event.target;
-        const name = `${form.name}`;
+        const name = form.name.value;
         const email = user?.email || 'unregistered';
         const address = form.address.value;
         const phone = form.phone.value;
@@ -20,7 +20,7 @@ const ServiceDetails = () => {
             service: _id,
             serviceName: title,
             price,
-            tourist: name,
+            name,
             email,
             address,
             phone,
