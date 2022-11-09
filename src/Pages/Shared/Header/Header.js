@@ -1,21 +1,30 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
+import logo from '../../../assets/logo.png';
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logOut()
+            .then()
+            .catch()
+    }
 
     const menuItem =
         <>
             <li className='font-semibold text-xl'> <Link to='/'>Home</Link> </li>
             <li className='font-semibold text-xl'> <Link to='/blog'>Blog</Link> </li>
             {
-                user?.email ?
+                user?.uid ?
                     <>
-                        <li className='font-semibold text-xl'> <Link to='/reviews'>My Review</Link> </li>
+                        <li className='font-semibold text-xl'><Link to='/reviews'>My Review</Link> </li>
+                        <li className='font-semibold text-xl'><Link to='/addService'>Add Service</Link> </li>
+                        <li className='font-semibold text-xl'> <Link to='/'> <button onClick={handleLogout} className='btn-ghost'>Sign Out</button></Link> </li>
                     </>
                     :
-                    <Link className='font-semibold text-xl' to='/login'>Login</Link>
+                    <li> <Link className='font-semibold text-xl' to='/login'>Login</Link> </li>
             }
 
         </>
@@ -31,15 +40,17 @@ const Header = () => {
                         {menuItem}
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-2xl">Tour Service</Link>
-            </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal p-0">
-                    {menuItem}
-                </ul>
+                <div className='flex'>
+                    <img className='w-24 h-16' src={logo} alt="logo" />
+                    <Link to="/" className="btn btn-ghost normal-case text-2xl">Tour Service</Link>
+                </div>
             </div>
             <div className="navbar-end">
-                <Link className='font-semibold text-xl' to='/signup'>Sign Up</Link>
+                <div className="navbar-center hidden lg:flex">
+                    <ul className="menu menu-horizontal p-0">
+                        {menuItem}
+                    </ul>
+                </div>
             </div>
         </div>
     );

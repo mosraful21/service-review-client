@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main";
+import AddService from "../../Pages/AddService/AddService";
 import AllServices from "../../Pages/AllServices/AllServices";
 import Blog from "../../Pages/Blog/Blog";
 import Home from "../../Pages/Home/Home/Home";
@@ -7,6 +8,7 @@ import Login from "../../Pages/Login/Login";
 import Review from "../../Pages/Review/Review";
 import ServiceDetails from "../../Pages/ServiceDetails/ServiceDetails";
 import SignUp from "../../Pages/SignUp/SignUp";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -27,12 +29,16 @@ const router = createBrowserRouter([
             },
             {
                 path: '/details/:id',
-                element: <ServiceDetails></ServiceDetails>,
+                element: <PrivateRoute><ServiceDetails></ServiceDetails></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
             },
             {
                 path: '/reviews',
                 element: <Review></Review>
+            },
+            {
+                path: '/addService',
+                element: <AddService></AddService>
             },
             {
                 path: '/login',
@@ -43,7 +49,8 @@ const router = createBrowserRouter([
                 element: <SignUp></SignUp>
             }
         ]
-    }
+    },
+    { path: '*', element: <h1 className='text-4xl text-center'>This route not found, Error 404</h1> }
 ])
 
 export default router;

@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import swal from 'sweetalert';
 
 const Login = () => {
-    const { login } = useContext(AuthContext);
+    const { login, signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
@@ -15,7 +15,6 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
 
         login(email, password)
             .then(() => {
@@ -28,14 +27,35 @@ const Login = () => {
             })
     }
 
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(() => {
+                navigate(from, { replace: true });
+                swal("Successfully login");
+            })
+            .catch(() => {
+                swal("Login Failed!");
+            })
+    }
+
+    const handleGitHubSignIn = () => {
+        signInWithGitHub()
+            .then(() => {
+                navigate(from, { replace: true });
+                swal("Successfully login");
+            })
+            .catch(() => {
+                swal("Login Failed!");
+            })
+    }
 
     return (
-        <div className="hero w-full my-20">
+        <div className="hero w-full my-8">
             <div className="hero-content grid gap-20 md:grid-cols-2 flex-col lg:flex-row">
                 <div className="text-center lg:text-left">
                     <img className='w-full' src={img} alt="" />
                 </div>
-                <div className="card flex-shrink-0 w-full max-w-sm py-20 shadow-2xl bg-base-100">
+                <div className="card flex-shrink-0 w-full max-w-sm py-8 shadow-2xl bg-base-100">
                     <h1 className="text-5xl text-center font-bold">Login Now</h1>
                     <form onSubmit={handleLogin} className="card-body">
                         <div className="form-control">
@@ -58,6 +78,15 @@ const Login = () => {
                         </div>
                     </form>
                     <p className='text-center'> New account <Link className='text-orange-600 font-bold' to='/signup'>Sign Up</Link> </p>
+                    <br />
+                    <div className='flex justify-evenly'>
+                        <div>
+                            <button onClick={handleGoogleSignIn} className="btn btn-outline btn-success">Google</button>
+                        </div>
+                        <div>
+                            <button onClick={handleGitHubSignIn} className="btn btn-outline btn-success">GitHub</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

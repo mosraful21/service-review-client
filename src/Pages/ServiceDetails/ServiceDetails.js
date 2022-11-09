@@ -37,7 +37,7 @@ const ServiceDetails = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                if(data.acknowledged){
+                if (data.acknowledged) {
                     swal('Review placed successfully');
                     form.reset();
                 }
@@ -70,7 +70,9 @@ const ServiceDetails = () => {
                     <input name='phone' type="text" placeholder="Phone Number" className="input input-bordered w-full" />
                 </div>
                 <textarea name='message' className="textarea textarea-bordered my-4 w-full h-40" placeholder="Your review"></textarea>
-                <button className="btn btn-wide bg-blue-600 text-xl">Submit</button>
+                <div className='flex justify-center'>
+                    <button className="btn btn-wide bg-blue-600 text-xl">Submit</button>
+                </div>
             </form>
 
         </div>

@@ -13,8 +13,8 @@ const ServiceCard = ({ service }) => {
                 </PhotoView>
             </PhotoProvider>
             <div className="card-body">
-                <h2 className="card-title">{title}</h2>
-                <p className='text-2xl text-orange-600 font-semibold'>Tour Cost: {price}</p>
+                <h2 className="card-title text-2xl">{title}</h2>
+                <p className='text-orange-600 font-semibold'>Tour Cost: {price}</p>
                 <p className='text-justify'><span className='font-bold'>Description:</span> {description.slice(0, 100)}...</p>
                 <div className="card-actions justify-end">
                     <Link to={`/details/${_id}`}>
