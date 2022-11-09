@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import swal from 'sweetalert';
 
 const Login = () => {
-    const { login, signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
@@ -28,29 +28,6 @@ const Login = () => {
             })
     }
 
-    const handleGoogleSignIn = () => {
-        signInWithGoogle()
-            .then(() => {
-                navigate('/courses');
-                navigate(from, { replace: true });
-                swal("Successfully login");
-            })
-            .catch((error) => {
-                swal("Wrong Password!");
-            })
-    }
-
-    const handleGitHubSignIn = () => {
-        signInWithGitHub()
-            .then(() => {
-                navigate('/courses');
-                navigate(from, { replace: true });
-                swal("Successfully login");
-            })
-            .catch((error) => {
-                swal("Wrong Password!");
-            })
-    }
 
     return (
         <div className="hero w-full my-20">
@@ -81,15 +58,6 @@ const Login = () => {
                         </div>
                     </form>
                     <p className='text-center'> New account <Link className='text-orange-600 font-bold' to='/signup'>Sign Up</Link> </p>
-                    <br />
-                    <div className='flex justify-evenly mb-3'>
-                        <div>
-                            <button onClick={handleGoogleSignIn} className="btn btn-outline btn-success">Google</button>
-                        </div>
-                        <div>
-                            <button onClick={handleGitHubSignIn} className="btn btn-outline btn-success">GitHub</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

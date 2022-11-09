@@ -25,7 +25,7 @@ const Footer = () => {
                     <a href="/" className="link link-hover">Cookie policy</a>
                 </div>
             </footer>
-            <footer className="footer px-10 py-4 border-t bg-blue-600 text-white border-base-300">
+            <footer className="footer px-10 py-4 border-t bg-blue-500 text-white border-base-300">
                 <div className="items-center grid-flow-col">
                     <p><span className='text-2xl font-bold'>Mosraful Habib</span> <br />Phones: 01774514821, 01817064020 <br /> email: mosraful21@gmail.com</p>
                 </div>

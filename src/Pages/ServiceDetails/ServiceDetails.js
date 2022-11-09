@@ -37,14 +37,14 @@ const ServiceDetails = () => {
                     <p className='font-bold text-orange-400'>Tour Cost: {price}</p>
                     <p className='text-justify'><span className='font-bold'>Description:</span> {description}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
+                        <button className="btn glass text-pink-600">payment Now</button>
                     </div>
                 </div>
             </div>
 
             {/* section-2: Review Section */}
             <form onSubmit={handleReview} className='border-2 rounded-xl p-5 shadow-2xl mb-5'>
-                <h2 className='text-4xl text-center font-bold mb-4'>Tourist Review</h2>
+                <h2 className='text-4xl text-blue-600 text-center font-bold mb-4'>Tourist Review</h2>
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
                     <input name='name' type="text" placeholder="Your Name" defaultValue={user?.displayName} className="input input-bordered w-full" />
                     <input name='email' type="email" placeholder="Your Email" defaultValue={user?.email} className="input input-bordered w-full" readOnly />
