@@ -11,7 +11,6 @@ const AddService = () => {
         const img = form.image.value;
         const price = form.price.value;
         const description = form.description.value;
-        console.log(title, img, price, description);
 
         const addService = {
             place_id,
@@ -30,13 +29,12 @@ const AddService = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if (data.acknowledged) {
                     swal('New Tour place successfully added');
                     form.reset();
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => console.error(error))
 
     }
 
