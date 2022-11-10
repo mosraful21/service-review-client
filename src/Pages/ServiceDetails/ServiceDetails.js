@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import swal from 'sweetalert';
 
@@ -55,7 +55,7 @@ const ServiceDetails = () => {
                     <p className='font-bold text-orange-400'>Tour Cost: {price}</p>
                     <p className='text-justify'><span className='font-bold'>Description:</span> {description}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn glass text-pink-600">payment Now</button>
+                        <Link to='/payment'><button className="btn glass text-pink-600">payment Now</button></Link>
                     </div>
                 </div>
             </div>

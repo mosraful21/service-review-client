@@ -13,7 +13,7 @@ const AllServices = () => {
     return (
         <div className='border-4 rounded my-5 shadow-2xl'>
             <div className='text-center mb-4'>
-                <h2 className="text-5xl text-blue-600 font-semibold m-3">All Tourist Place</h2>
+                <h2 className="text-4xl text-blue-600 font-semibold m-3">All Tourist Place</h2>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-5'>
                 {
