@@ -8,7 +8,7 @@ const Review = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+        fetch(`https://service-review-server-sable-two.vercel.app/reviews?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [user?.email])
@@ -16,7 +16,7 @@ const Review = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure, you want to cancel this review');
         if (proceed) {
-            fetch(`http://localhost:5000/reviews/${id}`, {
+            fetch(`https://service-review-server-sable-two.vercel.app/reviews/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -30,13 +30,12 @@ const Review = () => {
         }
     }
 
-    const handleEdit = (id) => {
-        fetch(`http://localhost:5000/reviews/${id}`, {
+    const handleUpdate = (id) => {
+        fetch(`https://service-review-server-sable-two.vercel.app/reviews/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ status: 'Approved' })
         })
             .then(res => res.json())
             .then(data => {
@@ -70,7 +69,7 @@ const Review = () => {
                             key={review._id}
                             review={review}
                             handleDelete={handleDelete}
-                            handleEdit={handleEdit}
+                            handleUpdate={handleUpdate}
                         ></ReviewRow>)
                     }
                 </tbody>
