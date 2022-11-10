@@ -7,9 +7,11 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Payment from "../../Pages/Payment/Payment";
 import Review from "../../Pages/Review/Review";
+import ReviewUpdate from "../../Pages/Review/ReviewUpdate";
 import ServiceDetails from "../../Pages/ServiceDetails/ServiceDetails";
 import SignUp from "../../Pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import PublicRoute from "../PublicRoute/PublicRoute";
 
 const router = createBrowserRouter([
     {
@@ -18,15 +20,23 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <PublicRoute><Home></Home></PublicRoute>
             },
             {
                 path: '/blog',
-                element: <Blog></Blog>
+                element: <PublicRoute><Blog></Blog></PublicRoute>
             },
             {
                 path: '/allServices',
-                element: <AllServices></AllServices>
+                element: <PublicRoute><AllServices></AllServices></PublicRoute>
+            },
+            {
+                path: '/login',
+                element: <PublicRoute><Login></Login></PublicRoute>
+            },
+            {
+                path: '/signup',
+                element: <PublicRoute><SignUp></SignUp></PublicRoute>
             },
             {
                 path: '/details/:id',
@@ -38,20 +48,16 @@ const router = createBrowserRouter([
                 element: <Review></Review>
             },
             {
+                path: '/reviewUpdate',
+                element: <ReviewUpdate></ReviewUpdate>
+            },
+            {
                 path: '/addService',
                 element: <AddService></AddService>
             },
             {
                 path: '/payment',
                 element: <Payment></Payment>
-            },
-            {
-                path: '/login',
-                element: <Login></Login>
-            },
-            {
-                path: '/signup',
-                element: <SignUp></SignUp>
             }
         ]
     },

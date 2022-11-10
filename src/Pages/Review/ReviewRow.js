@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ReviewRow = ({ review, handleDelete, handleEdit }) => {
-    const { _id, name, email, serviceName, price, message, service, status } = review;
+    const { _id, name, email, serviceName, price, message, service } = review;
     const [reviewService, setReviewService] = useState({});
 
     useEffect(() => {
@@ -40,7 +41,7 @@ const ReviewRow = ({ review, handleDelete, handleEdit }) => {
             <td>{message}</td>
             <th>
                 <label>
-                    <button onClick={() => handleEdit(_id)} className='btn btn-active btn-primary mx-3'>{status ? status : 'pending'}</button>
+                    <Link to='/reviewUpdate' className='btn btn-active btn-primary mx-3'>Update</Link>
                     <button onClick={() => handleDelete(_id)} className='btn btn-active btn-secondary'>Delete</button>
                 </label>
             </th>

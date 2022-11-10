@@ -45,8 +45,8 @@ const ServiceDetails = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    swal('Review placed successfully');
                     form.reset();
+                    swal('Review placed successfully');
                 }
             })
             .catch(error => console.error(error))
@@ -67,23 +67,30 @@ const ServiceDetails = () => {
                 </div>
                 <div className="overflow-x-auto w-full mb-12 px-6">
                     <h2 className='text-3xl text-blue-600 font-bold text-center mb-4'>Users Reviews</h2>
-                    <table className="table w-full">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>User Info</th>
-                                <th>Message</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                reviews.map(review => <UserServiceReview
-                                    key={review._id}
-                                    review={review}
-                                ></UserServiceReview>)
-                            }
-                        </tbody>
-                    </table>
+
+                    {reviews.length > 0 ?
+                        <>
+                            <table className="table w-full">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>User Info</th>
+                                        <th>Message</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        reviews.map(review => <UserServiceReview
+                                            key={review._id}
+                                            review={review}
+                                        ></UserServiceReview>)
+                                    }
+                                </tbody>
+                            </table>
+                        </>
+                        :
+                        <h2 className='text-2xl text-orange-400 font-semibold text-center'>No reviews found!!</h2>
+                    }
                 </div>
             </div>
 
